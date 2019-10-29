@@ -17,10 +17,10 @@ void print_list(struct song_node * x){
   }else{
     printf("List:[");
     while(x->next != NULL){
-      printf("%s, %s, ", x->name, x->artist);
+      printf("%s, %s, ", x->artist, x->name);
       x = x->next;
     }
-    printf("%s, %s]\n", x->name, x->artist);
+    printf("%s, %s]\n", x->artist, x->name);
   }
 }
 
