@@ -3,6 +3,14 @@
 
 #include "functions.h"
 
+struct node * insert_front(struct song_node * new, char name, char artist){
+  struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
+  new_node->name= name;
+  new_node->artist = artist;
+  new_node->next = new;
+  return new_node;
+}
+
 void print_list(struct song_node * x){
   if(x == NULL){
     printf("Empty list: []\n");
