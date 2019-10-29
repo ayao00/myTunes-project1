@@ -3,7 +3,7 @@
 
 #include "functions.h"
 
-struct node * insert_front(struct song_node * new, char name, char artist){
+struct node * insert_front(struct song_node * new, char * name, char * artist){
   struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
   new_node->name= name;
   new_node->artist = artist;
@@ -37,18 +37,18 @@ struct song_node * free_list(struct song_node * current){
   return NULL;
 }
 
-struct node * node_remove(struct song_node *front, char art){
+struct node * node_remove(struct song_node *front, char * artist){
   if(front == NULL){
     printf("Empty list\n");
     return front;
   }else{
-    if(front->artist == art){
+    if(front->artist == artist){
       return front->next;
     }else{
       struct node * previous = front;
       struct node * finder = front->next;
       while(finder != NULL){
-        if(finder->i == data){
+        if(finder->artist == artist){
           previous->next = finder->next;
           free(finder);
           return front;
