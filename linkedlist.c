@@ -3,7 +3,7 @@
 
 #include "functions.h"
 
-struct song_node * insert_front(struct song_node * new, char * name, char * artist){
+struct song_node * insert_front(struct song_node * new, char * artist, char * name){
   struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
   new_node->name= name;
   new_node->artist = artist;
