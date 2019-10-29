@@ -3,7 +3,7 @@
 
 #include "functions.h"
 
-struct node * insert_front(struct song_node * new, char * name, char * artist){
+struct song_node * insert_front(struct song_node * new, char * name, char * artist){
   struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
   new_node->name= name;
   new_node->artist = artist;
@@ -37,9 +37,9 @@ struct song_node * free_list(struct song_node * current){
   return NULL;
 }
 
-struct node * random_node();
+struct song_node * random_node();
 
-struct node * node_remove(struct song_node *front, char * artist){
+struct song_node * node_remove(struct song_node *front, char * artist){
   if(front == NULL){
     printf("Empty list\n");
     return front;
