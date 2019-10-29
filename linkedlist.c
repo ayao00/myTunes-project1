@@ -17,10 +17,10 @@ void print_list(struct song_node * x){
   }else{
     printf("List:[");
     while(x->next != NULL){
-      printf("%d, ", x->i);
+      printf("%s, %s, ", x->name, x->artist);
       x = x->next;
     }
-    printf("%d]\n", x->i);
+    printf("%s, %s]\n", x->name, x->artist);
   }
 }
 
@@ -28,7 +28,7 @@ struct song_node * free_list(struct song_node * current){
   struct song_node* next_node = (struct song_node *)malloc(sizeof(struct song_node));
   if(current->next != NULL){
     next_node = current->next;
-    printf("Freeing node: %d\n", current->i);
+    printf("Freeing node: %d\n", current->name);
     free(current);
     free_list(next_node);
   }else{
@@ -37,12 +37,12 @@ struct song_node * free_list(struct song_node * current){
   return NULL;
 }
 
-struct node * node_remove(struct song_node *front, int data){
+struct node * node_remove(struct song_node *front, char art){
   if(front == NULL){
     printf("Empty list\n");
     return front;
   }else{
-    if(front->i == data){
+    if(front->artist == art){
       return front->next;
     }else{
       struct node * previous = front;

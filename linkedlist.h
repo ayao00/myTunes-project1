@@ -10,5 +10,5 @@ void print_list(struct song_node * x);
 struct node * find_artist(struct song_node * x, char name, char artist);
 struct node * find_song(struct song_node * x, char artist);
 struct node * random_node(struct song_node * x);
-struct node * node_remove(struct song_node *front, char artist);
+struct node * node_remove(struct song_node *front, char art);
 struct node * free_list(struct song_node * current);
