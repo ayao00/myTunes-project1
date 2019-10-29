@@ -11,16 +11,16 @@ struct node * insert_front(struct song_node * new, char * name, char * artist){
   return new_node;
 }
 
-void print_list(struct song_node * listStart){
-  if(listStart == NULL){
+void print_list(struct song_node * x){
+  if(x == NULL){
     printf("Empty list: []\n");
   }else{
     printf("List:[");
-    while(listStart->next != NULL){
-      printf("%s, %s, ", listStart->name, listStart->artist);
-      listStart = listStart->next;
+    while(x->next != NULL){
+      printf("%s, %s, ", x->name, x->artist);
+      x = x->next;
     }
-    printf("%s, %s]\n", listStart->name, listStart->artist);
+    printf("%s, %s]\n", x->name, x->artist);
   }
 }
 
@@ -36,6 +36,8 @@ struct song_node * free_list(struct song_node * current){
   }
   return NULL;
 }
+
+struct node * random_node();
 
 struct node * node_remove(struct song_node *front, char * artist){
   if(front == NULL){
