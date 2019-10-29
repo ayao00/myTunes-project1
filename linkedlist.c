@@ -11,16 +11,16 @@ struct node * insert_front(struct song_node * new, char * name, char * artist){
   return new_node;
 }
 
-void print_list(struct song_node * x){
-  if(x == NULL){
+void print_list(struct song_node * listStart){
+  if(listStart == NULL){
     printf("Empty list: []\n");
   }else{
     printf("List:[");
-    while(x->next != NULL){
-      printf("%s, %s, ", x->name, x->artist);
-      x = x->next;
+    while(listStart->next != NULL){
+      printf("%s, %s, ", listStart->name, listStart->artist);
+      listStart = listStart->next;
     }
-    printf("%s, %s]\n", x->name, x->artist);
+    printf("%s, %s]\n", listStart->name, listStart->artist);
   }
 }
 
