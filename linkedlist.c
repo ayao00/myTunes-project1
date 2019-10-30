@@ -11,7 +11,7 @@ struct song_node * insert_front(struct song_node * new, char * artist, char * na
   return new_node;
 }
 
-void print_list(struct song_node * x){
+void print_list(struct song_node * front){
   if(x == NULL){
     printf("Empty list: []\n");
   }else{
@@ -37,9 +37,9 @@ struct song_node * free_list(struct song_node * current){
   return NULL;
 }
 
-struct song_node * random_node();
+struct song_node * random_song();
 
-struct song_node * node_remove(struct song_node *front, char * artist){
+struct song_node * remove_song(struct song_node *front, char * artist){
   if(front == NULL){
     printf("Empty list\n");
     return front;
