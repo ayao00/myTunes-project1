@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "functions.h"
+#include "linkedlist.h"
 
 struct song_node * insert_front(struct song_node * new, char * artist, char * name){
   struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
@@ -12,15 +12,15 @@ struct song_node * insert_front(struct song_node * new, char * artist, char * na
 }
 
 void print_list(struct song_node * front){
-  if(x == NULL){
+  if(front == NULL){
     printf("Empty list: []\n");
   }else{
     printf("List:[");
-    while(x->next != NULL){
-      printf("%s, %s, ", x->artist, x->name);
-      x = x->next;
+    while(front->next != NULL){
+      printf("%s, %s, ", front->artist, front->name);
+      front = front->next;
     }
-    printf("%s, %s]\n", x->artist, x->name);
+    printf("%s, %s]\n", front->artist, front->name);
   }
 }
 
@@ -28,7 +28,7 @@ struct song_node * free_list(struct song_node * current){
   struct song_node* next_node = (struct song_node *)malloc(sizeof(struct song_node));
   if(current->next != NULL){
     next_node = current->next;
-    printf("Freeing node: %d\n", current->name);
+    printf("Freeing node: %s\n", current->name);
     free(current);
     free_list(next_node);
   }else{
@@ -47,8 +47,8 @@ struct song_node * remove_song(struct song_node *front, char * artist){
     if(front->artist == artist){
       return front->next;
     }else{
-      struct node * previous = front;
-      struct node * finder = front->next;
+      struct song_node * previous = front;
+      struct song_node * finder = front->next;
       while(finder != NULL){
         if(finder->artist == artist){
           previous->next = finder->next;
