@@ -19,9 +19,9 @@ int main(){
   tester = insert_front(tester, pearl, "even flow");
   tester = insert_front(tester, pearl, "alive");
   tester = insert_front(tester, ac, "thunderstruck");
-  tester = insert_order(tester, ac, "a");
-  tester = insert_order(tester, ac, "z");
-  tester = insert_order(tester, pearl, "i");
+  //tester = insert_order(tester, ac, "a");
+  //tester = insert_order(tester, ac, "z");
+  //tester = insert_order(tester, pearl, "i");
   printf("Testing print_list:\n");
   print_list(tester);
   printf("===========================\n\n");
