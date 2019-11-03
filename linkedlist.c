@@ -12,6 +12,32 @@ struct song_node * insert_front(struct song_node * new, char * artist, char * na
   return new_node;
 }
 
+struct song_node * insert_order(struct song_node * front, char * artist, char * name){
+  struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
+  struct song_node * previous = front;
+  struct song_node * finder = front->next;
+  while(previous->next != NULL){
+    printf("")
+    if(strcmp(previous->artist, artist) < 0){
+      previous = finder;
+      finder = finder->next;
+    }else{
+      strcpy(new_node->artist, artist);
+      if(strcmp(previous->name, name) < 0){
+        previous = finder;
+        finder = finder->next;
+      }else{
+        strcpy(new_node->name, name);
+        previous->next = new_node;
+        new_node->next = finder;
+      }
+    }
+  }
+  return front;
+}
+
+
+
 void print_list(struct song_node * front){
   if(front == NULL){
     printf("Empty list: []\n");
@@ -21,6 +47,14 @@ void print_list(struct song_node * front){
       front = front->next;
     }
     printf("\n");
+  }
+}
+
+void print_node(struct song_node * front){
+  if(front == NULL){
+    printf("Empty list: []\n");
+  }else{
+    printf("%s: %s\n", front->artist, front->name);
   }
 }
 
@@ -55,10 +89,19 @@ struct song_node * find_artist(struct song_node * front, char * artist){
   }
   printf("artist not found\n");
   return front;
-
 }
 
-struct song_node * random_song();
+struct song_node * random_song(struct song_node * front){
+  int i = rand() % 20 + 1;
+  struct song_node * looper = front;
+  for(;i > 0;i--){
+    if(front->next == NULL){
+      front = looper;
+    }
+    front = front->next;
+  }
+  return front;
+}
 
 struct song_node * remove_song(struct song_node *front, char * artist, char *name){
   printf("Removing [%s: %s]\n", artist, name);
@@ -72,7 +115,7 @@ struct song_node * remove_song(struct song_node *front, char * artist, char *nam
       struct song_node * previous = front;
       struct song_node * finder = front->next;
       while(finder != NULL){
-        if(strcmp(front->artist, artist) == 0 && strcmp(front->name, name) == 0){
+        if(strcmp(finder->artist, artist) == 0 && strcmp(finder->name, name) == 0){
           previous->next = finder->next;
           free(finder);
           return front;
