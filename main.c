@@ -10,6 +10,7 @@ int main(){
   printf("===========================\n\n");
 
   struct song_node * tester = (struct song_node*)malloc(sizeof(struct song_node));
+  tester = NULL;
   char * ac = "ac/dc";
   char * pearl = "pearl jam";
   tester = insert_front(tester, "radiohead", "street spirit (fade out)");
