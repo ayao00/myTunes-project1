@@ -17,7 +17,7 @@ struct song_node * insert_order(struct song_node * front, char * artist, char * 
   struct song_node * previous = front;
   struct song_node * finder = front->next;
   while(previous->next != NULL){
-    printf("")
+    printf("");
     if(strcmp(previous->artist, artist) < 0){
       previous = finder;
       finder = finder->next;
