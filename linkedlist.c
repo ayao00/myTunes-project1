@@ -13,26 +13,23 @@ struct song_node * insert_front(struct song_node * new, char * artist, char * na
 }
 
 struct song_node * insert_order(struct song_node * front, char * artist, char * name){
-  struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
-  struct song_node * previous = front;
-  struct song_node * finder = front->next;
-  while(previous->next != NULL){
-    printf("");
-    if(strcmp(previous->artist, artist) < 0){
-      previous = finder;
-      finder = finder->next;
-    }else{
-      strcpy(new_node->artist, artist);
-      if(strcmp(previous->name, name) < 0){
-        previous = finder;
-        finder = finder->next;
-      }else{
-        strcpy(new_node->name, name);
-        previous->next = new_node;
-        new_node->next = finder;
-      }
-    }
+  if (front == NULL){
+    return insert_front(front, artist, name);
   }
+  struct song_node * current = front;
+  struct song_node * previous = NULL;
+  while(current && strcmp(current->artist, artist) < 0){
+    previous = current;
+    current = current->next;
+  }
+  while(current && strcmp(current->artist, artist) == 0 && strcmp(current->name, name) < 0){
+    previous = current;
+    current = current->next;
+  }
+  if (previous == NULL){
+    return insert_front(current, artist, name);
+  }
+  previous->next = insert_front(current, artist, name);
   return front;
 }
 
@@ -42,7 +39,7 @@ void print_list(struct song_node * front){
   if(front == NULL){
     printf("Empty list: []\n");
   }else{
-    while(front->next != NULL){
+    while(front){
       printf("%s: %s | ", front->artist, front->name);
       front = front->next;
     }
@@ -81,7 +78,7 @@ struct song_node * find_artist(struct song_node * front, char * artist){
   while(front->next != NULL){
     if(strcmp(front->artist, artist) == 0){
       finder = front;
-      printf("artist found!");
+      printf("artist found! ");
       print_list(finder);
       return finder;
     }
