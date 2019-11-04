@@ -55,5 +55,14 @@ int main(){
   printf("Testing free_list\n");
   tester = free_list(tester);
   print_list(tester);
+  printf("===========================\n\n");
+
+  printf("LIBRARY TESTS\n");
+  printf("===========================\n\n");
+  struct song_node * table[27];
+  for(int i = 0;i < 27;i++){
+    table[i]= NULL;
+  }
+
 
 }

@@ -39,7 +39,7 @@ void print_list(struct song_node * front){
   if(front == NULL){
     printf("Empty list: []\n");
   }else{
-    while(front){
+    while(front->next != NULL){
       printf("%s: %s | ", front->artist, front->name);
       front = front->next;
     }
