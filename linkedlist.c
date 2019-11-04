@@ -89,15 +89,23 @@ struct song_node * find_artist(struct song_node * front, char * artist){
 }
 
 struct song_node * random_song(struct song_node * front){
-  int i = rand() % 20 + 1;
-  struct song_node * looper = front;
-  for(;i > 0;i--){
-    if(front->next == NULL){
-      front = looper;
-    }
-    front = front->next;
+  struct song_node * iterator = front;
+  int index = rand();
+  int length = 0;
+  while (iterator) {
+    length++;
+    iterator = iterator->next;
   }
-  return front;
+  iterator = front;
+  if(length == 0){
+    return iterator;
+  }
+  index = index % length;
+  int i = 0;
+  for(;i < index;i++){
+    iterator = iterator->next;
+  }
+  return iterator;
 }
 
 struct song_node * remove_song(struct song_node *front, char * artist, char *name){
@@ -127,14 +135,12 @@ struct song_node * remove_song(struct song_node *front, char * artist, char *nam
 }
 
 struct song_node * free_list(struct song_node * current){
-  struct song_node* next_node = (struct song_node *)malloc(sizeof(struct song_node));
-  if(current->next != NULL){
-    next_node = current->next;
-    printf("Freeing node: %s - %s\n", current->artist, current->name);
+  struct song_node* next_node = current;
+  while(current){
+    current = current->next;
+    printf("Freeing node: %s - %s\n", next_node->artist, next_node->name);
     free(current);
-    free_list(next_node);
-  }else{
-    printf("List after free_list\n");
+    next_node = current;
   }
-  return NULL;
+  return current;
 }

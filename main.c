@@ -59,7 +59,7 @@ int main(){
 
 
 //_____________________________________________________________________________
-  printf("LIBRARY TESTS\n");
+  printf("MUSIC LIBRARY TESTS\n");
   printf("===========================\n\n");
   struct song_node * table[27];
   for(int i = 0;i < 27;i++){
@@ -101,17 +101,30 @@ int main(){
   printf("===========================\n\n");
 
   printf("Testing clear_library:\n");
+  print_library(table);
   clear_library(table);
   printf("Library after clear:\n");
   print_library(table);
   printf("===========================\n\n");
 
-  // srand(time(NULL));
-  // printf("Testing random:\n");
-  // print_node(random_song(tester));
-  // print_node(random_song(tester));
-  // printf("===========================\n\n");
-  //
+  printf("Adding songs to empty library\n");
+  insert_song(table, ac, "thunderstruck");
+  insert_song(table, pearl, "alive");
+  insert_song(table, pearl, "even flow");
+  insert_song(table, pearl, "yellow ledbetter");
+  insert_song(table, "pink floyd", "time");
+  print_library(table);
+  printf("===========================\n\n");
+
+  printf("Testing print_artist:\n");
+  print_artist(table, pearl);
+  printf("\n");
+  print_artist(table, ac);
+  printf("===========================\n\n");
+
+  printf("Testing shuffle\n");
+  shuffle(table);
+  printf("===========================\n\n");
 
 
 

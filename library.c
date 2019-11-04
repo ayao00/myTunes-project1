@@ -33,7 +33,7 @@ struct song_node * find_libartist(struct song_node * table[27], char * artist){
   }
   else{
     printf("looking for [%s]\n", artist);
-    printf("artist not found");
+    printf("artist not found\n");
     return NULL;
   }
 
@@ -49,7 +49,7 @@ void print_artist(struct song_node * table[27], char *artist){
   int i = index_finder(artist);
   struct song_node * art = find_artist(table[i], artist);
   if(strcmp(art ->artist, artist)!=0){
-    printf("artist not found");
+    printf("artist not found\n");
   }else{
     printf("looking for [%s]\nartist found! ", artist);
     while(art){
@@ -58,6 +58,7 @@ void print_artist(struct song_node * table[27], char *artist){
       }
       art = art->next;
     }
+    printf("\n");
   }
 }
 
@@ -79,13 +80,13 @@ void shuffle(struct song_node * table[27]){
   printf("shuffled playlist\n");
 
   int i = rand();
-  i = (int) rand() % 8;
+  i = (int) i % 10;
   for(int j = 0; j < i;){
     int index = rand() % 27;
     struct song_node * randomsong = random_song(table[index]);
     if(randomsong){
-      printf("[%s, %s],", randomsong->artist, randomsong->name);
-      i++;
+      printf("[%s, %s]\n", randomsong->artist, randomsong->name);
+      j++;
     }
   }
 }
@@ -99,8 +100,7 @@ void clear_library(struct song_node * table[27]){
   int i = 0;
   for(; i< 27;i++){
     if(table[i]){
-      printf("yoooooooooooooooooooo");
-      free_list(table[i]);
+      table[i] = free_list(table[i]);
     }
   }
 }
