@@ -79,5 +79,5 @@ struct song_node * shuffle(struct song_node * table[27]){
 
 struct song_node * remove_libsong(struct song_node *table[27], char * artist, char *name){
   int i = index_finder(artist);
-  return remove_song(table[i],artist,name)
+  return remove_song(table[i],artist,name);
 }
