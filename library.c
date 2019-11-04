@@ -16,17 +16,32 @@ void insert_song(struct song_node *table[27], char * artist, char *name){
 
 struct song_node * find_libsong(struct song_node * table[27], char * artist, char * name){
   int i = index_finder(artist);
-  return find_song(table[i], artist, name);
+  if (table[i]){
+    return find_song(table[i], artist, name);
+  }
+  else{
+    printf("looking for [%s: %s]\n", artist, name);
+    printf("song not found");
+    return NULL;
+  }
 }
 
 struct song_node * find_libartist(struct song_node * table[27], char * artist){
   int i = index_finder(artist);
-  return find_artist(table[i],artist);
+  if (table[i]){
+    return find_artist(table[i],artist);
+  }
+  else{
+    printf("looking for [%s]\n", artist);
+    printf("artist not found");
+    return NULL;
+  }
+
 }
 
 void print_letter(struct song_node * table[27], char * letter){
   int i = index_finder(letter);
-  printf("%s list", letter);
+  printf("%s list\n", letter);
   print_list(table[i]);
 }
 
@@ -83,6 +98,9 @@ struct song_node * remove_libsong(struct song_node *table[27], char * artist, ch
 void clear_library(struct song_node * table[27]){
   int i = 0;
   for(; i< 27;i++){
-    table[i] = NULL;
+    if(table[i]){
+      printf("yoooooooooooooooooooo");
+      free_list(table[i]);
+    }
   }
 }

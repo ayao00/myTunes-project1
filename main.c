@@ -57,12 +57,62 @@ int main(){
   print_list(tester);
   printf("===========================\n\n");
 
+
+//_____________________________________________________________________________
   printf("LIBRARY TESTS\n");
   printf("===========================\n\n");
   struct song_node * table[27];
   for(int i = 0;i < 27;i++){
     table[i]= NULL;
   }
+  insert_song(table, "radiohead", "street spirit (fade out)");
+  insert_song(table, "radiohead", "paranoid android");
+  insert_song(table, "pink floyd", "time");
+  insert_song(table, pearl, "yellow ledbetter");
+  insert_song(table, pearl, "even flow");
+  insert_song(table, pearl, "alive");
+  insert_song(table, ac, "thunderstruck");
+  insert_song(table, "presidents of the united states", "peaches");
+
+  printf("Testing print_library:\n");
+  print_library(table);
+  printf("===========================\n\n");
+
+  printf("Testing print_letter:\n");
+  print_letter(table, "p");
+  printf("===========================\n\n");
+
+  printf("Testing find:\n");
+  find_libsong(table, pearl, "alive");
+  find_libsong(table, pearl, "time");
+  printf("===========================\n\n");
+
+  printf("Testing find_artist:\n");
+  find_libartist(table, pearl);
+  find_libartist(table, "pink floyd");
+  find_libartist(table, "bob dylan");
+  printf("===========================\n\n");
+
+  printf("Testing remove_song:\n");
+  table[index_finder(pearl)] = remove_libsong(table, pearl, "alive");
+  print_library(table);
+  table[index_finder(pearl)] = remove_libsong(table, pearl, "yellow ledbetter");
+  print_library(table);
+  printf("===========================\n\n");
+
+  printf("Testing clear_library:\n");
+  clear_library(table);
+  printf("Library after clear:\n");
+  print_library(table);
+  printf("===========================\n\n");
+
+  // srand(time(NULL));
+  // printf("Testing random:\n");
+  // print_node(random_song(tester));
+  // print_node(random_song(tester));
+  // printf("===========================\n\n");
+  //
+
 
 
 }

@@ -39,7 +39,7 @@ void print_list(struct song_node * front){
   if(front == NULL){
     printf("Empty list: []\n");
   }else{
-    while(front->next != NULL){
+    while(front){
       printf("%s: %s | ", front->artist, front->name);
       front = front->next;
     }
@@ -63,12 +63,12 @@ struct song_node * find_song(struct song_node * front, char * artist, char * nam
       strcpy(finder->artist, artist);
       strcpy(finder->name, name);
       finder->next = front->next;
-      printf("node found! %s: %s\n", finder->artist, finder->name);
+      printf("song found! %s: %s\n", finder->artist, finder->name);
       return finder;
     }
     front = front->next;
   }
-  printf("node not found\n");
+  printf("song not found\n");
   return front;
 }
 
